@@ -48,7 +48,7 @@ const Create = () => {
     };
 
     axios
-      .post("https://singtory-api.xquare.app/music", data)
+      .post("http://172.16.20.140:8080/music", data)
       .then((response) => {
         console.log("Creation successful:", response.data);
       })

@@ -47,12 +47,12 @@ export const time = styled.div`
   font-size: 16px;
 `;
 
-export const loading = styled.img`
-  width: 24px;
-  height: 24px;
+export const load = styled.img`
+  width: 60px;
+  height: 60px;
   position: relative;
-  left: 170px;
-  bottom: 22px;
+  left: 130px;
+  top: 130px;
 `;
 
 export const img = styled.img`
@@ -60,7 +60,7 @@ export const img = styled.img`
   height: 69px;
 `;
 
-export const cancle = styled.div`
+export const cancel = styled.div`
   color: #ff6767;
   position: relative;
   left: 270px;

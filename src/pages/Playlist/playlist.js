@@ -46,12 +46,13 @@ const playlist = () => {
               <S.time>{music.time}</S.time>
               <S.img src={music1} alt="music1" />
               <S.plus src={plus} alt="plus" />
-              <S.loading src={loading} alt="loading" />
             </S.music>
           ))}
         </S.musics>
         <S.CreateContainer>
-          <S.create src={create} alt="create" />
+          <a href="http://localhost:3000/create">
+            <S.create src={create} alt="create" />
+          </a>
           <S.background />
         </S.CreateContainer>
       </S.container>

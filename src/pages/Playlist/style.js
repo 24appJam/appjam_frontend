@@ -7,7 +7,7 @@ export const container = styled.div`
 
 export const logo = styled.img`
   position: relative;
-  top: 30px;
+  top: 50px;
   left: 310px;
 `;
 
@@ -83,4 +83,5 @@ export const background = styled.div`
 export const create = styled.img`
   position: absolute;
   bottom: 15px;
+  left: 145px;
 `;

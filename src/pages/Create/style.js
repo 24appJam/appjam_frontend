@@ -7,7 +7,7 @@ export const container = styled.div`
 
 export const logo = styled.img`
   position: relative;
-  top: 30px;
+  top: 50px;
   left: 310px;
 `;
 

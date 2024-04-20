@@ -41,7 +41,9 @@ const Create = () => {
     <>
       <S.container>
         <S.logo src={logo} alt="logo" />
-        <S.back src={back} alt="back" />
+        <a href="http://localhost:3000/playlist">
+          <S.back src={back} alt="back" />
+        </a>
         <S.title>노래 생성</S.title>
         <S.StoryBox placeholder="사연을 적어 주세요" />
         <S.atmosphere>분위기</S.atmosphere>

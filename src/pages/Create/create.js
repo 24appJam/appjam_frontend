@@ -1,5 +1,5 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
+import axios from "axios";
 import * as S from "./style";
 import logo from "../../assets/logo.svg";
 import back from "../../assets/back.svg";
@@ -10,6 +10,8 @@ const Create = () => {
 
   const [tags1, setTags1] = useState(initialTags);
   const [tags2, setTags2] = useState(initialTags2);
+  const [story, setStory] = useState("");
+  const [additionalRequest, setAdditionalRequest] = useState("");
 
   const removeTags1 = (indexToRemove) => {
     const filter = tags1.filter((el, index) => index !== indexToRemove);
@@ -37,6 +39,24 @@ const Create = () => {
     }
   };
 
+  const handleCreate = () => {
+    const data = {
+      prompt: story,
+      atmosphere: tags1.join(","),
+      keywords: tags2.join(","),
+      additional_requirements: additionalRequest,
+    };
+
+    axios
+      .post("https://singtory-api.xquare.app/music", data)
+      .then((response) => {
+        console.log("Creation successful:", response.data);
+      })
+      .catch((error) => {
+        console.error("Error creating:", error);
+      });
+  };
+
   return (
     <>
       <S.container>
@@ -45,7 +65,11 @@ const Create = () => {
           <S.back src={back} alt="back" />
         </a>
         <S.title>노래 생성</S.title>
-        <S.StoryBox placeholder="사연을 적어 주세요" />
+        <S.StoryBox
+          placeholder="사연을 적어 주세요"
+          onChange={(e) => setStory(e.target.value)}
+          value={story}
+        />
         <S.atmosphere>분위기</S.atmosphere>
         <S.TagsInput>
           <ul id="tags1">
@@ -95,8 +119,12 @@ const Create = () => {
           />
         </S.TagsInput>
         <S.add>추가 요구사항</S.add>
-        <S.AddBox placeholder="추가 요구사항을 적어 주세요" />
-        <S.CreateBtn>생성하기</S.CreateBtn>
+        <S.AddBox
+          placeholder="추가 요구사항을 적어 주세요"
+          onChange={(e) => setAdditionalRequest(e.target.value)}
+          value={additionalRequest}
+        />
+        <S.CreateBtn onClick={handleCreate}>생성하기</S.CreateBtn>
         <S.padding />
       </S.container>
     </>

@@ -55,12 +55,17 @@ export const loading = styled.img`
   bottom: 22px;
 `;
 
-export const img = styled.img``;
+export const img = styled.img`
+  width: 69px;
+  height: 69px;
+`;
 
-export const plus = styled.img`
+export const cancle = styled.div`
+  color: #ff6767;
   position: relative;
-  left: 235px;
-  bottom: 22px;
+  left: 270px;
+  bottom: 50px;
+  font-size: 14px;
 `;
 
 export const CreateContainer = styled.div`

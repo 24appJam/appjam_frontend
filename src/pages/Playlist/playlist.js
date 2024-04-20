@@ -1,38 +1,28 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import * as S from "./style.js";
-import music1 from "../../assets/music1.svg";
-import plus from "../../assets/plus.svg";
 import create from "../../assets/create.svg";
-import loading from "../../assets/loading.svg";
 import logo from "../../assets/logo.svg";
+import axios from "axios";
 
-const playlist = () => {
-  const musicsData = [
-    { name: "Lorem Ipsum", time: "2:00" },
-    { name: "Lorem Ipsum", time: "2:00" },
-    { name: "Lorem Ipsum", time: "2:00" },
-    { name: "Lorem Ipsum", time: "2:00" },
-    { name: "Lorem Ipsum", time: "2:00" },
-    { name: "Lorem Ipsum", time: "2:00" },
-    { name: "Lorem Ipsum", time: "2:00" },
-    { name: "Lorem Ipsum", time: "2:00" },
-    { name: "Lorem Ipsum", time: "2:00" },
-    { name: "Lorem Ipsum", time: "2:00" },
-    { name: "Lorem Ipsum", time: "2:00" },
-    { name: "Lorem Ipsum", time: "2:00" },
-    { name: "Lorem Ipsum", time: "2:00" },
-    { name: "Lorem Ipsum", time: "2:00" },
-    { name: "Lorem Ipsum", time: "2:00" },
-    { name: "Lorem Ipsum", time: "2:00" },
-    { name: "Lorem Ipsum", time: "2:00" },
-    { name: "Lorem Ipsum", time: "2:00" },
-    { name: "Lorem Ipsum", time: "2:00" },
-    { name: "Lorem Ipsum", time: "2:00" },
-    { name: "Lorem Ipsum", time: "2:00" },
-    { name: "Lorem Ipsum", time: "2:00" },
-    { name: "Lorem Ipsum", time: "2:00" },
-    { name: "Lorem Ipsum", time: "2:00" },
-  ];
+const Playlist = () => {
+  const [musicsData, setMusicsData] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get("http://172.16.20.140:8080/music/all")
+      .then((response) => {
+        setMusicsData(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching music data:", error);
+      });
+  }, []);
+
+  const handleDelete = (index) => {
+    const updatedMusicsData = [...musicsData];
+    updatedMusicsData.splice(index, 1);
+    setMusicsData(updatedMusicsData);
+  };
 
   return (
     <>
@@ -42,10 +32,9 @@ const playlist = () => {
         <S.musics>
           {musicsData.map((music, index) => (
             <S.music key={index}>
-              <S.name>{music.name}</S.name>
-              <S.time>{music.time}</S.time>
-              <S.img src={music1} alt="music1" />
-              <S.plus src={plus} alt="plus" />
+              <S.img src={music.image_url} alt={`music-${index}`} />
+              <S.name>{music.title}</S.name>
+              <S.cancle onClick={() => handleDelete(index)}>Delete</S.cancle>
             </S.music>
           ))}
         </S.musics>
@@ -60,4 +49,4 @@ const playlist = () => {
   );
 };
 
-export default playlist;
+export default Playlist;

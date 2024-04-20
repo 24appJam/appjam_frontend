@@ -95,6 +95,7 @@ const Create = () => {
         <S.add>추가 요구사항</S.add>
         <S.AddBox placeholder="추가 요구사항을 적어 주세요" />
         <S.CreateBtn>생성하기</S.CreateBtn>
+        <S.padding />
       </S.container>
     </>
   );

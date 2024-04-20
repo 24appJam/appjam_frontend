@@ -161,6 +161,13 @@ export const AddBox = styled.textarea`
   }
 `;
 
+export const padding = styled.div`
+  width: 100px;
+  height: 20px;
+  margin-top: 200px;
+  padding-top: 50px;
+`;
+
 export const CreateBtn = styled.button`
   position: fixed;
   left: 25px;

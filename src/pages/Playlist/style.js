@@ -60,18 +60,18 @@ export const img = styled.img`
   height: 69px;
 `;
 
-export const cancel = styled.div`
-  color: #ff6767;
+export const play = styled.img`
+  width: 30px;
+  height: 30px;
   position: relative;
-  left: 270px;
-  bottom: 50px;
-  font-size: 14px;
+  left: 215px;
+  bottom: 22px;
 `;
 
 export const CreateContainer = styled.div`
   position: fixed;
   width: 100vw;
-  height: 100vh;
+  height: 100px;
   bottom: 0;
   display: flex;
   justify-content: center;

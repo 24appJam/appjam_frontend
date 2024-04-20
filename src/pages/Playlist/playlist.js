@@ -3,10 +3,11 @@ import * as S from "./style.js";
 import create from "../../assets/create.svg";
 import logo from "../../assets/logo.svg";
 import load from "../../assets/loading.svg";
+import play from "../../assets/play.svg";
 import axios from "axios";
 
 const Playlist = () => {
-  const [musicsData, setMusicsData] = useState([]);
+  const [musicsData, setMusicsData] = useState([]); // Initialized with an empty array
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -18,21 +19,17 @@ const Playlist = () => {
       })
       .catch((error) => {
         console.error("Error fetching music data:", error);
-        setLoading(false); // Set loading to false in case of error
+        setLoading(false);
       });
   }, []);
+
+  const handlePlayClick = () => {
+    console.log("clicked");
+  };
 
   if (loading) {
     return <div>Loading...</div>;
   }
-
-  const handleDelete = (index) => {
-    const updatedMusicsData = [...musicsData];
-
-    updatedMusicsData.splice(index, 1);
-
-    setMusicsData(updatedMusicsData);
-  };
 
   return (
     <>
@@ -40,17 +37,13 @@ const Playlist = () => {
         <S.logo src={logo} alt="logo" />
         <S.title>내 Playlist</S.title>
         <S.musics>
-          {loading ? (
-            <S.load src={load} alt="load" />
-          ) : (
-            musicsData.map((music, index) => (
-              <S.music key={index}>
-                <S.img src={music.image_url} alt={`music-${index}`} />
-                <S.name>{music.title}</S.name>
-                <S.cancel onClick={() => handleDelete(index)}>Delete</S.cancel>
-              </S.music>
-            ))
-          )}
+          {musicsData.map((music, index) => (
+            <S.music key={index}>
+              <S.img src={music.image_url} alt={`music-${index}`} />
+              <S.name>{music.title}</S.name>
+              <S.play src={play} alt="play" onClick={handlePlayClick} />
+            </S.music>
+          ))}
         </S.musics>
         <S.CreateContainer>
           <a href="http://localhost:3000/create">

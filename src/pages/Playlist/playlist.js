@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 import * as S from "./style.js";
 import create from "../../assets/create.svg";
 import logo from "../../assets/logo.svg";
-import load from "../../assets/loading.svg";
 import play from "../../assets/play.svg";
-import axios from "axios";
 
 const Playlist = () => {
   const [musicsData, setMusicsData] = useState([]); // Initialized with an empty array
@@ -23,8 +22,8 @@ const Playlist = () => {
       });
   }, []);
 
-  const handlePlayClick = () => {
-    console.log("clicked");
+  const handlePlayClick = (videoUrl) => {
+    window.open(videoUrl, "_blank"); // Opens the video URL in a new tab
   };
 
   if (loading) {
@@ -41,7 +40,11 @@ const Playlist = () => {
             <S.music key={index}>
               <S.img src={music.image_url} alt={`music-${index}`} />
               <S.name>{music.title}</S.name>
-              <S.play src={play} alt="play" onClick={handlePlayClick} />
+              <S.play
+                src={play}
+                alt="play"
+                onClick={() => handlePlayClick(music.video_url)}
+              />
             </S.music>
           ))}
         </S.musics>
